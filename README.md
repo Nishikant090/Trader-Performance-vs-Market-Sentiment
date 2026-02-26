@@ -110,7 +110,7 @@ Sentiment-Based Capital Allocation
 Allocate more capital to aggressive strategies during Greed periods.
 
 1️⃣ Clone Repository
-git clone https://github.com/your-username/trader-sentiment-analysis.git
+git clone https://github.com/Nishikant090/Trader-Performance-vs-Market-Sentiment
 cd trader-sentiment-analysis
 2️⃣ Create Virtual Environment (Recommended)
 python -m venv venv
