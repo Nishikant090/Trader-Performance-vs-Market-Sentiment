@@ -1,30 +1,36 @@
+📊 Trader Performance vs Market Sentiment
+
+Primetrade.ai – Round 0 Assignment
+Author: Nishikant Kumar
+
 📌 Project Overview
 
-This project analyzes how Bitcoin market sentiment (Fear/Greed Index) relates to trader behavior and performance on Hyperliquid.
+This project analyzes how Bitcoin market sentiment (Fear/Greed Index) influences trader behavior and profitability on Hyperliquid.
 
-The goal is to uncover statistically supported patterns that can inform smarter, sentiment-aware trading strategies.
+The objective is to uncover statistically supported behavioral patterns and translate them into actionable, sentiment-aware trading insights.
 
 🎯 Objective
 
-To evaluate:
+We evaluate:
 
 Does trader performance differ between Fear and Greed regimes?
 
-Do traders change behavior based on sentiment?
+Do traders adjust behavior (risk, size, frequency, direction) based on sentiment?
 
-Are certain trader segments more affected by sentiment?
+Are specific trader segments more sensitive to sentiment shifts?
 
-Can these insights inform risk-adjusted strategy recommendations?
+Can these insights inform risk-adjusted trading strategies?
 
 📂 Datasets Used
-
-Bitcoin Fear/Greed Index
+1️⃣ Bitcoin Fear/Greed Index
 
 Fields: Date, Classification
 
-Frequency: Daily sentiment regime
+Frequency: Daily
 
-Hyperliquid Historical Trader Data
+Used to define sentiment regimes (Fear vs Greed)
+
+2️⃣ Hyperliquid Historical Trader Data
 
 211,224 trade records
 
@@ -40,8 +46,6 @@ Closed PnL
 
 Fee
 
-Leverage (if applicable)
-
 Timestamp IST
 
 Direction (Long/Short)
@@ -53,43 +57,49 @@ Loaded both datasets
 
 Converted timestamps to daily level
 
-Merged trade data with daily sentiment
+Merged trades with daily sentiment
 
-Checked for missing values & duplicates
+Verified missing values and duplicates
+
+Standardized column formats
 
 2️⃣ Feature Engineering
 
 Created the following metrics:
 
-Closed PnL
+Net PnL = Closed PnL – Fee
 
-Net PnL (Closed PnL – Fee)
+Win indicator (PnL > 0)
 
-Win indicator
+Trade size proxy (Size USD)
 
-Trade size (Size USD)
+Risk segmentation (High vs Low risk based on size)
 
-Risk segments (High vs Low risk)
+Trade frequency per account
 
-Sentiment binary (Fear vs Greed)
+Sentiment binary (Fear = 0, Greed = 1)
 
 3️⃣ Statistical Analysis
 
 Compared mean PnL across regimes
 
-Compared win rate and trade size
+Compared win rates by sentiment
 
-Conducted t-tests to validate statistical significance
+Compared trade size distributions
 
-Segmented traders by risk profile
+Conducted t-tests to evaluate statistical significance
+
+Segmented traders (risk-based + frequency-based)
 
 4️⃣ Visualization
 
-High-risk PnL distribution by sentiment
+PnL distribution by sentiment
 
 Trade size distribution by sentiment
 
 Win rate comparison
+
+Segment-wise performance analysis
 
 📈 Key Insights
 
@@ -101,29 +111,42 @@ Traders increase position sizes during Fear periods.
 
 Sentiment impact is segment-dependent rather than universal.
 
+Behavioral adjustment is visible in position sizing and trading intensity.
+
 💡 Strategy Recommendations
+1️⃣ Dynamic Risk Scaling
 
-Dynamic Risk Scaling
-Reduce leverage exposure for high-risk traders during Fear regimes.
+Reduce exposure for high-risk traders during Fear regimes to limit volatility amplification.
 
-Sentiment-Based Capital Allocation
-Allocate more capital to aggressive strategies during Greed periods.
+2️⃣ Sentiment-Based Capital Allocation
 
+Allocate more capital to aggressive strategies during Greed regimes where risk-tolerant traders statistically outperform.
+
+3️⃣ Segment-Specific Adjustment
+
+Apply sentiment-aware adjustments selectively — broad market-wide leverage reduction may not be optimal.
+
+▶️ How to Run
 1️⃣ Clone Repository
 git clone https://github.com/Nishikant090/Trader-Performance-vs-Market-Sentiment
 cd trader-sentiment-analysis
 2️⃣ Create Virtual Environment (Recommended)
 python -m venv venv
-source venv/bin/activate     # Mac/Linux
-venv\Scripts\activate        # Windows
+
+Mac/Linux:
+
+source venv/bin/activate
+
+Windows:
+
+venv\Scripts\activate
 3️⃣ Install Dependencies
 pip install -r requirements.txt
 
-If requirements.txt is not provided, install manually:
+If requirements.txt is not included:
 
-pip install pandas numpy matplotlib seaborn scipy
-▶️ How to Run
-Option 1 — Jupyter Notebook
+pip install pandas numpy matplotlib scipy
+▶️ Run Notebook
 jupyter notebook
 
 Open:
@@ -131,8 +154,3 @@ Open:
 Primetrade_ai.ipynb
 
 Run all cells sequentially.
-
-Option 2 — Python Script
-python primetrade_ai.py
-
-Ensure datasets are placed in the same directory as the script.
